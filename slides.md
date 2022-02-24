@@ -21,363 +21,253 @@ drawings:
   persist: false
 ---
 
-# Welcome to Slidev
 
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
-    class="text-xl icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+# Aspida
+## -型安全にREST APIを-
 
 ---
 
-# What is Slidev?
+# Aspidaとは?
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+<img src="/aspida.logo.png">
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
+- TypeScriptフレンドリーなHTTPクライアントラッパー
+- axiosとかfetchを使ってAPIとやり取りをするアレ
+- 開発者が日本人!
 
 <style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
+img {
+  width: 700px;
+  margin-bottom: 20px;
 }
 </style>
 
 ---
 
-# Navigation
+# Aspidaの読み方
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
----
-
-# Code
-
-Use code snippets and get the highlighting directly![^1]
-
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number
-  firstName: string
-  lastName: string
-  role: string
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id)
-  const newUser = {...user, ...update}  
-  saveUser(id, newUser)
-}
-```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
+「アスピーダ」と読むらしい
+<div class="container">
+  <Tweet id="1488884328432308226" class="tweet" />
+  <img src="/frourio.logo.png">
+</div>
 
 <style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
+.container {
+  display: flex;
+  justify-content: space-between;
 }
-.footnotes {
-  @apply text-sm opacity-75;
+
+.tweet {
+  width: 400px;
 }
-.footnote-backref {
-  display: none;
+
+img {
+  margin-top: 10px;
+  width: 400px;
+  height: 200px;
 }
 </style>
 
 ---
 
-# Components
+# そもそも何が問題？
 
 <div grid="~ cols-2 gap-4">
 <div>
 
-You can use Vue components directly inside your slides.
+<ul>
+  <li>axiosの例</li>
+  <li>GET: `/articles/:articleId/?user={userId}`</li>
+</ul>
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
+<p v-click="1">IDにタイトルを代入している</p>
+<p v-click="2">article"s"のタイポ</p>
+<p v-click="3">`{ params: { user: userId } }` が正解</p>
 </div>
 
+<div class="code">
 
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="-t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-preload: false
----
-
-# Animations
-
-Animations are powered by [@vueuse/motion](https://motion.vueuse.org/).
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }">
-  Slidev
-</div>
-```
-
-<div class="w-60 relative mt-6">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-square.png"
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-circle.png"
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute top-0 left-0 right-0 bottom-0"
-      src="https://sli.dev/logo-triangle.png"
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 40, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
-
-<br>
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$
-\begin{array}{c}
-
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
-
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
-
-\nabla \cdot \vec{\mathbf{B}} & = 0
-
-\end{array}
-$$
-
-<br>
-
-[Learn more](https://sli.dev/guide/syntax#latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
-
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
+```ts {all|6|9|10}
+type Article = {
+  id: number
+  content: string
 }
 
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
+const articleId = 'sample title'
+const userId = 2
+const { data } = await axios.get<Article>(
+  `/article/${articleId}`,
+  { params: { userId } }
+)
 ```
 
 </div>
+</div>
 
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
+<h3 v-click="7">この辺りの型定義がデフォルトだとがっちりできない！</h3>
 
+<style>
+p {
+  text-decoration: underline;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.code {
+  width: 500px;
+}
+</style>
 
 ---
 layout: center
-class: text-center
 ---
 
-# Learn More
+<h1>
+  <twemoji-cat-with-tears-of-joy />
+</h1>
+<div class="absolute top-12 left-30 text-3xl">タイポ気にするの面倒</div>
+<div class="absolute top-17 right-12 text-3xl">なにかミスをしていないか</div>
+<div class="absolute bottom-12 right-30 text-3xl">何か良い方法はないか。。</div>
+<div class="absolute bottom-30 left-20 text-3xl">オレオレ関数も作るの面倒。。。</div>
 
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+---
+
+# ここが便利: 型定義を自動生成
+`api/articles/_articleId@number.ts`
+- URLは`/articles/:articleId`
+- アンダースコアから始まるパス変数「articleId」の型を「@number」と指定
+- この型はデフォルトでは`number | string`
+
+
+```ts
+type Article = {
+  id: number
+  content: string 
+}
+
+export type Methods = {
+  get: {
+    query: {
+      user: number
+    }
+  }
+  resBody: Article
+}
+```
+
+---
+
+# ここが便利: 型補完
+- 自動生成された型定義をもとにサクッと使用することが可能
+- 使う側でタイポや型のミスなどを防げる
+
+<video controls="controls">
+  <source src="/code-example.mov">
+</video>
+
+<style>
+video {
+  margin-top: 40px;
+}
+</style>
+
+---
+
+# エコシステムも充実
+
+<ul>
+  <li><span>openapi2aspida</span>: Open APIやSwagger定義から自動型生成</li>
+  <li><span>aspida-mock</span>: APIサーバーをモックできる</li>
+  <li><span>frourio</span>: TypeScriptのフルスタックフレームワーク</li>
+  <li><span>@aspida/swr</span>: SWR&#40;React Hooks&#41;ラッパー</li>
+  <li><span>@aspida/swrv</span>: SWRV&#40;Vue Composition API&#41;ラッパー</li>
+  <li><span>eslint-plugin-aspida</span>: Aspidaの定義にルール付け</li>
+  <li><span>pathpida</span>: Next, Nuxt, Sapperで使うルーティングを型安全にする</li>
+</ul>
+
+<style>
+span {
+  color: #6998AB;
+}
+</style>
+
+---
+
+# openapi2aspida
+Open APIやSwagger定義から自動型生成
+
+```
+$ npx openapi2aspida -i https://petstore.swagger.io/v2/swagger.json # or ../local-swagger.yaml
+# api/$api.ts was built successfully.
+```
+
+あとはAspidaで使うだけ
+```ts
+import axiosClient from '@aspida/axios'
+import api from "./api/$api"
+import type { Pet } from './api/@types'
+
+(async () => {
+  const client = api(axiosClient())
+  const petId = 100
+  await client.pet._petId(petId).$get()
+})()
+```
+
+---
+
+# aspida-mock
+
+<div grid="~ cols-2 gap-4">
+
+<div>
+  <ul>
+    <li>Aspidaの型定義を利用してAPIをモックしてくれる</li>
+    <li>サーバー不要、ブラウザのみで動作</li>
+  </ul>
+</div>
+
+<div>
+
+```ts
+type Article = {
+  id: number
+  content: string 
+}
+
+export type Methods = {
+  get: {
+    query: {
+      user: number
+    }
+  }
+  resBody: Article
+}
+
+export default mockMethods<Methods>({
+  get: ({ query }) => {
+    status: 200,
+    resBody: {
+      id: query.user,
+      content: 'mock content'
+    }
+  }
+})
+```
+
+</div>
+
+</div>
+
+
+
+---
+
+# まとめ
+- ファイルシステムベースで直感的に型定義ができるのが便利！
+- ユースケースはまだまだなので、「あれしたい、これしたい」に必要な情報へのアクセスは難しい
+- 今後に期待なライブラリ！

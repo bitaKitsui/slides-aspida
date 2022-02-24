@@ -10,5 +10,8 @@
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   },
-  "name": "aspida"
+  "name": "aspida",
+  "devDependencies": {
+    "@iconify-json/twemoji": "^1.1.0"
+  }
 }
